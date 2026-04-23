@@ -1,38 +1,44 @@
-function Login(){
-    return(
-        <div className="flex items-centre justify-centre h-scrreen bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-md w-80">
-                <h2 className="text-2xl font-bold mb-4 text-centre">Login</h2>
-                <input 
-                type="email"
-                placeholder="Emaill" 
-                className="w-full mb-3 p-2 border rounded "/>
-                
-                <input 
-                type="password"
-                placeholder="Password"
-                className="w-full mb-4 p-2 border rouded " />
+import { Link } from "react-router-dom";
 
-                <button className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
-                Login
-                </button>
+function Login() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          Welcome Back
+        </h2>
 
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-            
-            
-            </div>
-        
-        
-        
-        
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full mb-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <div className="text-right mb-4">
+          <Link to="#" className="text-sm text-blue-600 hover:underline">
+            Forgot Password?
+          </Link>
         </div>
-    
-    
-    
-    
-    )
 
+        <button className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition">
+          Login
+        </button>
 
+        <p className="text-sm text-center mt-4">
+          New user?{" "}
+          <Link to="/signup" className="text-blue-600 hover:underline">
+            Signup
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
