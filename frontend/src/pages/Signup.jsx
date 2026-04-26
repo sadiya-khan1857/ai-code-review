@@ -1,66 +1,73 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function Signup() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
   const handleSignup = () => {
-    if (!email || !password) {
-      setError("Please fill all fields");
-      return;
-    }
-
-    // 🔹 TEMP AUTH (replace with backend later)
     localStorage.setItem("isLoggedIn", "true");
-
     navigate("/dashboard");
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Create Account
-        </h2>
+    <div className="min-h-screen flex items-center justify-center px-4 relative">
 
-        {/* Error */}
-        {error && (
-          <p className="text-red-500 text-sm mb-3 text-center">{error}</p>
-        )}
+      {/* 🌈 Soft gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-700"></div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
+      {/* soft overlay */}
+      <div className="absolute inset-0 bg-black/30"></div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
+      {/* 🧊 Glass Card */}
+      <div className="relative w-full max-w-md">
 
-        <button
-          onClick={handleSignup}
-          className="w-full bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition"
-        >
-          Signup
-        </button>
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 text-white">
 
-        <p className="text-sm text-center mt-4">
-          Already a user?{" "}
-          <Link to="/login" className="text-green-600 hover:underline">
-            Login
-          </Link>
-        </p>
+          {/* Heading */}
+          <h2 className="text-2xl font-semibold text-center">
+            Create Account ✨
+          </h2>
+
+          <p className="text-center text-white/70 text-sm mt-1 mb-6">
+            Start your AI-powered code reviews
+          </p>
+
+          {/* Email */}
+          <div className="mb-4">
+            <label className="text-sm text-white/80">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full mt-1 p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="mb-6">
+            <label className="text-sm text-white/80">Password</label>
+            <input
+              type="password"
+              placeholder="Create a password"
+              className="w-full mt-1 p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            onClick={handleSignup}
+            className="w-full bg-white/20 hover:bg-white/30 text-white p-3 rounded-lg transition shadow-md"
+          >
+            Sign Up
+          </button>
+
+          {/* Footer */}
+          <p className="text-sm text-center mt-5 text-white/70">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-200 hover:underline">
+              Login
+            </Link>
+          </p>
+
+        </div>
       </div>
     </div>
   );

@@ -1,72 +1,80 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
   const handleLogin = () => {
-    if (!email || !password) {
-      setError("Please enter email and password");
-      return;
-    }
-
-    // 🔹 TEMP AUTH (replace with backend later)
     localStorage.setItem("isLoggedIn", "true");
-
     navigate("/dashboard");
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Welcome Back
-        </h2>
+    <div className="min-h-screen flex items-center justify-center px-4 relative">
 
-        {/* Error */}
-        {error && (
-          <p className="text-red-500 text-sm mb-3 text-center">{error}</p>
-        )}
+      {/* 🌫 Soft Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"></div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+      {/* subtle noise overlay feel */}
+      <div className="absolute inset-0 bg-black/20"></div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+      {/* 🧊 Glass Card */}
+      <div className="relative w-full max-w-md">
 
-        <div className="text-right mb-4">
-          <Link to="#" className="text-sm text-blue-600 hover:underline">
-            Forgot Password?
-          </Link>
+        <div className="backdrop-blur-2xl bg-white/5 border border-white/10 shadow-2xl rounded-2xl p-8 text-white">
+
+          {/* Header */}
+          <h2 className="text-2xl font-semibold text-center">
+            Welcome Back
+          </h2>
+
+          <p className="text-center text-white/60 text-sm mt-1 mb-6">
+            Sign in to continue your code reviews
+          </p>
+
+          {/* Email */}
+          <div className="mb-4">
+            <label className="text-sm text-white/70">Email</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              className="w-full mt-1 p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="mb-3">
+            <label className="text-sm text-white/70">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="w-full mt-1 p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+
+          {/* Forgot */}
+          <div className="text-right mb-5">
+            <Link to="#" className="text-xs text-blue-300 hover:underline">
+              Forgot password?
+            </Link>
+          </div>
+
+          {/* Button */}
+          <button
+            onClick={handleLogin}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition shadow-md"
+          >
+            Login
+          </button>
+
+          {/* Footer */}
+          <p className="text-sm text-center mt-5 text-white/60">
+            New here?{" "}
+            <Link to="/signup" className="text-blue-300 hover:underline">
+              Create account
+            </Link>
+          </p>
+
         </div>
-
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
-
-        <p className="text-sm text-center mt-4">
-          New user?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            Signup
-          </Link>
-        </p>
       </div>
     </div>
   );
